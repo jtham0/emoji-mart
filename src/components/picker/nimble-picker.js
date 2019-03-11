@@ -490,6 +490,7 @@ export default class NimblePicker extends React.PureComponent {
         anchorsClassName,
         anchorsContainerClassName,
         scrollContainerStyle,
+        verticalScrollTrackClassName,
         verticalScrollThumbClassName,
         searchClassName,
         categoryClassName,
@@ -548,6 +549,15 @@ export default class NimblePicker extends React.PureComponent {
               className={classNames(
                 'emoji-mart-scroll-thumb-vertical',
                 verticalScrollThumbClassName,
+              )}
+              renderTrackVertical={(props) => (
+                <div
+                  {...props}
+                  className={className(
+                    'emoji-mart-scroll-track-vertical',
+                    verticalScrollTrackClassName,
+                  )}
+                />
               )}
             />
           )}
@@ -643,6 +653,7 @@ NimblePicker.propTypes /* remove-proptypes */ = {
   className: PropTypes.string,
   anchorsContainerClassName: PropTypes.string,
   previewContainerClassName: PropTypes.string,
+  verticalScrollTrackClassName: PropTypes.string,
   verticalScrollThumbClassName: PropTypes.string,
   scrollContainerStyle: PropTypes.object,
 }
@@ -651,6 +662,7 @@ NimblePicker.defaultProps = {
   className: '',
   anchorsContainerClassName: '',
   previewContainerClassName: '',
+  verticalScrollTrackClassName: '',
   verticalScrollThumbClassName: '',
   scrollContainerStyle: {},
 }
