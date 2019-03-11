@@ -65,7 +65,7 @@ export default class Search extends React.PureComponent {
   }
 
   render() {
-    var { i18n, autoFocus } = this.props
+    var { i18n, autoFocus, className } = this.props
     var { icon, isSearching } = this.state
 
     return (

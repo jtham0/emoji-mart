@@ -490,6 +490,7 @@ export default class NimblePicker extends React.PureComponent {
         anchorsClassName,
         anchorsContainerClassName,
         scrollContainerStyle,
+        verticalScrollThumbClassName,
         searchClassName,
         categoryClassName,
         categoryLabelClassName,
@@ -642,10 +643,14 @@ NimblePicker.propTypes /* remove-proptypes */ = {
   className: PropTypes.string,
   anchorsContainerClassName: PropTypes.string,
   previewContainerClassName: PropTypes.string,
+  verticalScrollThumbClassName: PropTypes.string,
+  scrollContainerStyle: PropTypes.object,
 }
 NimblePicker.defaultProps = {
   ...PickerDefaultProps,
   className: '',
   anchorsContainerClassName: '',
   previewContainerClassName: '',
+  verticalScrollThumbClassName: '',
+  scrollContainerStyle: {},
 }

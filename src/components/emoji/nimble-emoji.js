@@ -98,7 +98,7 @@ const NimbleEmoji = (props) => {
   let { unified, custom, short_names, imageUrl } = data,
     style = {},
     children = props.children,
-    className = classNames('emoji-mart-emoji', emojiClassName),
+    className = classNames('emoji-mart-emoji', props.emojiClassName),
     title = null
 
   if (!unified && !custom) {
