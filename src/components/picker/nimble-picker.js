@@ -487,6 +487,7 @@ export default class NimblePicker extends React.PureComponent {
         notFound,
         notFoundEmoji,
         className,
+        anchorClassName,
         anchorsClassName,
         anchorsContainerClassName,
         scrollContainerStyle,
@@ -501,6 +502,8 @@ export default class NimblePicker extends React.PureComponent {
         previewTitleClassName,
         previewShortNameClassName,
         previewContainerClassName,
+        skinToneClassName,
+        skinToneContainerClassName,
       } = this.props,
       { skin } = this.state,
       width = perLine * (emojiSize + 12) + 12 + 2 + measureScrollbar()
@@ -523,6 +526,7 @@ export default class NimblePicker extends React.PureComponent {
             onAnchorClick={this.handleAnchorClick}
             icons={this.icons}
             className={anchorsClassName}
+            anchorClassName={anchorClassName}
           />
         </div>
 
@@ -639,6 +643,8 @@ export default class NimblePicker extends React.PureComponent {
               className={previewClassName}
               previewTitleClassName={previewTitleClassName}
               previewShortNameClassName={previewShortNameClassName}
+              skinToneClassName={skinToneClassName}
+              skinToneContainerClassName={skinToneContainerClassName}
             />
           </div>
         )}

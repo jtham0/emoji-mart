@@ -28,6 +28,8 @@ export default class Preview extends React.PureComponent {
         className,
         previewTitleClassName,
         previewShortNameClassName,
+        skinToneClassName,
+        skinToneContainerClassName,
       } = this.props
 
     if (emoji && showPreview) {
@@ -114,12 +116,16 @@ export default class Preview extends React.PureComponent {
                   skinEmoji={skinsProps.skinEmoji}
                   i18n={i18n}
                   onChange={skinsProps.onChange}
+                  skinToneClassName={skinToneClassName}
+                  skinToneContainerClassName={skinToneContainerClassName}
                 />
               ) : (
                 <SkinsDot
                   skin={skinsProps.skin}
                   i18n={i18n}
                   onChange={skinsProps.onChange}
+                  skinToneClassName={skinToneClassName}
+                  skinToneContainerClassName={skinToneContainerClassName}
                 />
               )}
             </div>
@@ -139,6 +145,8 @@ Preview.propTypes /* remove-proptypes */ = {
   className: PropTypes.string,
   previewTitleClassName: PropTypes.string,
   previewShortNameClassName: PropTypes.string,
+  skinToneClassName: PropTypes.string,
+  skinToneContainerClassName: PropTypes.string,
 }
 
 Preview.defaultProps = {
@@ -147,4 +155,6 @@ Preview.defaultProps = {
   className: '',
   previewTitleClassName: '',
   previewShortNameClassName: '',
+  skinToneClassName: '',
+  skinToneContainerClassName: '',
 }

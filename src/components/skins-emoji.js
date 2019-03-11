@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import classNames from 'classnames'
 
 import NimbleEmoji from './emoji/nimble-emoji'
 import Skins from './skins'
@@ -12,7 +13,15 @@ export default class SkinsEmoji extends Skins {
   }
 
   render() {
-    const { skin, emojiProps, data, skinEmoji, i18n } = this.props
+    const {
+      skin,
+      emojiProps,
+      data,
+      skinEmoji,
+      i18n,
+      skinToneClassName,
+      skinToneContainerClassName,
+    } = this.props
     const { opened } = this.state
     const skinToneNodes = []
 
@@ -21,9 +30,10 @@ export default class SkinsEmoji extends Skins {
       skinToneNodes.push(
         <span
           key={`skin-tone-${skinTone}`}
-          className={`emoji-mart-skin-swatch custom${
-            selected ? ' selected' : ''
-          }`}
+          className={classNames(
+            `emoji-mart-skin-swatch custom${selected ? ' selected' : ''}`,
+            skinToneClassName,
+          )}
         >
           <span
             onClick={this.handleClick}
@@ -47,7 +57,10 @@ export default class SkinsEmoji extends Skins {
 
     return (
       <div
-        className={`emoji-mart-skin-swatches custom${opened ? ' opened' : ''}`}
+        className={classNames(
+          `emoji-mart-skin-swatches custom${opened ? ' opened' : ''}`,
+          skinToneContainerClassName,
+        )}
       >
         <div className={`emoji-mart-skin-text${opened ? ' opened' : ''}`}>
           {i18n.skintext}
@@ -65,9 +78,13 @@ SkinsEmoji.propTypes /* remove-proptypes */ = {
   skinTone: PropTypes.number,
   skinEmoji: PropTypes.string.isRequired,
   i18n: PropTypes.object,
+  skinToneClassName: PropTypes.string,
+  skinToneContainerClassName: PropTypes.string,
 }
 
 SkinsEmoji.defaultProps = {
   onChange: () => {},
   skinTone: null,
+  skinToneClassName: '',
+  skinToneContainerClassName: '',
 }
