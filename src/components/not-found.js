@@ -27,10 +27,7 @@ export default class NotFound extends React.PureComponent {
           onClick: null,
         })}
         <div
-          className={classNames(
-            'emoji-mart-no-results-label',
-            noResultsLabelClassName,
-          )}
+          className={classNames('emoji-mart-no-results-label', labelClassName)}
         >
           {i18n.notfound}
         </div>
