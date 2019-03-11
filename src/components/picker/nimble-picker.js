@@ -2,6 +2,7 @@ import '../../vendor/raf-polyfill'
 
 import React from 'react'
 import PropTypes from 'prop-types'
+import classNames from 'classnames'
 import { Scrollbars } from 'react-custom-scrollbars'
 
 import * as icons from '../../svgs'
@@ -485,6 +486,7 @@ export default class NimblePicker extends React.PureComponent {
         skinEmoji,
         notFound,
         notFoundEmoji,
+        className,
       } = this.props,
       { skin } = this.state,
       width = perLine * (emojiSize + 12) + 12 + 2 + measureScrollbar()
@@ -492,7 +494,7 @@ export default class NimblePicker extends React.PureComponent {
     return (
       <div
         style={{ width: width, ...style }}
-        className="emoji-mart"
+        className={classNames('emoji-mart', className)}
         onKeyDown={this.handleKeyDown}
       >
         <div className="emoji-mart-bar">
