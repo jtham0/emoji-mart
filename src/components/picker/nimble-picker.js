@@ -553,7 +553,7 @@ export default class NimblePicker extends React.PureComponent {
               renderTrackVertical={(props) => (
                 <div
                   {...props}
-                  className={className(
+                  className={classNames(
                     'emoji-mart-scroll-track-vertical',
                     verticalScrollTrackClassName,
                   )}
