@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import classNames from 'classnames'
 
 export default class Anchors extends React.PureComponent {
   constructor(props) {
@@ -24,11 +25,11 @@ export default class Anchors extends React.PureComponent {
   }
 
   render() {
-    var { categories, color, i18n, icons } = this.props,
+    var { categories, color, i18n, icons, className } = this.props,
       { selected } = this.state
 
     return (
-      <div className="emoji-mart-anchors">
+      <div className={classNames('emoji-mart-anchors', className)}>
         {categories.map((category, i) => {
           var { id, name, anchor } = category,
             isSelected = name == selected
@@ -67,10 +68,12 @@ Anchors.propTypes /* remove-proptypes */ = {
   categories: PropTypes.array,
   onAnchorClick: PropTypes.func,
   icons: PropTypes.object,
+  className: PropTypes.string,
 }
 
 Anchors.defaultProps = {
   categories: [],
   onAnchorClick: () => {},
   icons: {},
+  className: '',
 }

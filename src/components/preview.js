@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import classNames from 'classnames'
 
 import { getData } from '../utils'
 import NimbleEmoji from './emoji/nimble-emoji'
@@ -24,6 +25,9 @@ export default class Preview extends React.PureComponent {
         emoji: idleEmoji,
         i18n,
         showPreview,
+        className,
+        previewTitleClassName,
+        previewShortNameClassName,
       } = this.props
 
     if (emoji && showPreview) {
@@ -42,7 +46,7 @@ export default class Preview extends React.PureComponent {
       })
 
       return (
-        <div className="emoji-mart-preview">
+        <div className={classNames('emoji-mart-preview', className)}>
           <div className="emoji-mart-preview-emoji">
             {NimbleEmoji({
               key: emoji.id,
@@ -52,11 +56,23 @@ export default class Preview extends React.PureComponent {
             })}
           </div>
 
-          <div className="emoji-mart-preview-data">
-            <div className="emoji-mart-preview-name">{emoji.name}</div>
-            <div className="emoji-mart-preview-shortnames">
+          <div className={'emoji-mart-preview-data'}>
+            <div
+              className={classNames(
+                'emoji-mart-preview-name',
+                previewTitleClassName,
+              )}
+            >
+              {emoji.name}
+            </div>
+            <div className={'emoji-mart-preview-shortnames'}>
               {emojiData.short_names.map((short_name) => (
-                <span key={short_name} className="emoji-mart-preview-shortname">
+                <span
+                  key={short_name}
+                  className={
+                    ('emoji-mart-preview-shortname', previewShortNameClassName)
+                  }
+                >
                   :{short_name}:
                 </span>
               ))}
@@ -120,9 +136,15 @@ Preview.propTypes /* remove-proptypes */ = {
   emoji: PropTypes.string.isRequired,
   emojiProps: PropTypes.object.isRequired,
   skinsProps: PropTypes.object.isRequired,
+  className: PropTypes.string,
+  previewTitleClassName: PropTypes.string,
+  previewShortNameClassName: PropTypes.string,
 }
 
 Preview.defaultProps = {
   showSkinTones: true,
   onChange: () => {},
+  className: '',
+  previewTitleClassName: '',
+  previewShortNameClassName: '',
 }

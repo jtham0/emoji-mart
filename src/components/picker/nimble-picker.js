@@ -487,6 +487,18 @@ export default class NimblePicker extends React.PureComponent {
         notFound,
         notFoundEmoji,
         className,
+        anchorsClassName,
+        anchorsContainerClassName,
+        scrollContainerStyle,
+        searchClassName,
+        categoryClassName,
+        categoryLabelClassName,
+        emojiClassName,
+        notFoundLabelClassName,
+        previewClassName,
+        previewTitleClassName,
+        previewShortNameClassName,
+        previewContainerClassName,
       } = this.props,
       { skin } = this.state,
       width = perLine * (emojiSize + 12) + 12 + 2 + measureScrollbar()
@@ -497,7 +509,9 @@ export default class NimblePicker extends React.PureComponent {
         className={classNames('emoji-mart', className)}
         onKeyDown={this.handleKeyDown}
       >
-        <div className="emoji-mart-bar">
+        <div
+          className={classNames('emoji-mart-bar', anchorsContainerClassName)}
+        >
           <Anchors
             ref={this.setAnchorsRef}
             data={this.data}
@@ -506,6 +520,7 @@ export default class NimblePicker extends React.PureComponent {
             categories={this.categories}
             onAnchorClick={this.handleAnchorClick}
             icons={this.icons}
+            className={anchorsClassName}
           />
         </div>
 
@@ -519,14 +534,21 @@ export default class NimblePicker extends React.PureComponent {
           exclude={exclude}
           custom={this.CUSTOM_CATEGORY.emojis}
           autoFocus={autoFocus}
+          className={searchClassName}
         />
 
         <Scrollbars
           ref={this.setScrollRef}
           onScroll={this.handleScroll}
-          style={{ height: 270 }}
+          style={{ height: 270, ...scrollContainerStyle }}
           renderThumbVertical={(props) => (
-            <div {...props} className="emoji-mart-scroll-thumb-vertical" />
+            <div
+              {...props}
+              className={classNames(
+                'emoji-mart-scroll-thumb-vertical',
+                verticalScrollThumbClassName,
+              )}
+            />
           )}
         >
           {this.getCategories().map((category, i) => {
@@ -567,13 +589,19 @@ export default class NimblePicker extends React.PureComponent {
                 }}
                 notFound={notFound}
                 notFoundEmoji={notFoundEmoji}
+                className={categoryClassName}
+                categoryLabelClassName={categoryLabelClassName}
+                emojiClassName={emojiClassName}
+                notFoundLabelClassName={notFoundLabelClassName}
               />
             )
           })}
         </Scrollbars>
 
         {(showPreview || showSkinTones) && (
-          <div className="emoji-mart-bar">
+          <div
+            className={classNames('emoji-mart-bar', previewContainerClassName)}
+          >
             <Preview
               ref={this.setPreviewRef}
               data={this.data}
@@ -597,6 +625,9 @@ export default class NimblePicker extends React.PureComponent {
                 skinEmoji: skinEmoji,
               }}
               i18n={this.i18n}
+              className={previewClassName}
+              previewTitleClassName={previewTitleClassName}
+              previewShortNameClassName={previewShortNameClassName}
             />
           </div>
         )}
@@ -608,5 +639,13 @@ export default class NimblePicker extends React.PureComponent {
 NimblePicker.propTypes /* remove-proptypes */ = {
   ...PickerPropTypes,
   data: PropTypes.object.isRequired,
+  className: PropTypes.string,
+  anchorsContainerClassName: PropTypes.string,
+  previewContainerClassName: PropTypes.string,
 }
-NimblePicker.defaultProps = { ...PickerDefaultProps }
+NimblePicker.defaultProps = {
+  ...PickerDefaultProps,
+  className: '',
+  anchorsContainerClassName: '',
+  previewContainerClassName: '',
+}
