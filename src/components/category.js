@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import classNames from 'classnames'
 
 import frequently from '../utils/frequently'
 import { getData } from '../utils'
@@ -153,6 +154,10 @@ export default class Category extends React.Component {
         i18n,
         notFound,
         notFoundEmoji,
+        className,
+        categoryLabelClassName,
+        emojiClassName,
+        notFoundLabelClassName,
       } = this.props,
       emojis = this.getEmojis(),
       labelStyles = {},
@@ -178,13 +183,16 @@ export default class Category extends React.Component {
     return (
       <div
         ref={this.setContainerRef}
-        className="emoji-mart-category"
+        className={classNames('emoji-mart-category', className)}
         style={containerStyles}
       >
         <div
           style={labelStyles}
           data-name={name}
-          className="emoji-mart-category-label"
+          className={classNames(
+            'emoji-mart-category-label',
+            categoryLabelClassName,
+          )}
         >
           <span style={labelSpanStyles} ref={this.setLabelRef}>
             {i18n.categories[id]}
@@ -193,7 +201,12 @@ export default class Category extends React.Component {
 
         {emojis &&
           emojis.map((emoji) =>
-            NimbleEmoji({ emoji: emoji, data: this.data, ...emojiProps }),
+            NimbleEmoji({
+              emoji: emoji,
+              data: this.data,
+              emojiClassName,
+              ...emojiProps,
+            }),
           )}
 
         {emojis &&
@@ -204,6 +217,7 @@ export default class Category extends React.Component {
               notFoundEmoji={notFoundEmoji}
               data={this.data}
               emojiProps={emojiProps}
+              labelClassName={notFoundLabelClassName}
             />
           )}
       </div>
@@ -221,9 +235,17 @@ Category.propTypes /* remove-proptypes */ = {
   recent: PropTypes.arrayOf(PropTypes.string),
   notFound: PropTypes.func,
   notFoundEmoji: PropTypes.string.isRequired,
+  className: PropTypes.string,
+  categoryLabelClassName: PropTypes.string,
+  emojiClassName: PropTypes.string,
+  notFoundLabelClassName: PropTypes.string,
 }
 
 Category.defaultProps = {
   emojis: [],
   hasStickyPosition: true,
+  className: '',
+  categoryLabelClassName: '',
+  emojiClassName: '',
+  notFoundLabelClassName: '',
 }

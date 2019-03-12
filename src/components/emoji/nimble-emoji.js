@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import classNames from 'classnames'
 
 import { getData, getSanitizedData, unifiedToNative } from '../../utils'
 import { uncompress } from '../../utils/data'
@@ -97,7 +98,7 @@ const NimbleEmoji = (props) => {
   let { unified, custom, short_names, imageUrl } = data,
     style = {},
     children = props.children,
-    className = 'emoji-mart-emoji',
+    className = classNames('emoji-mart-emoji', props.emojiClassName),
     title = null
 
   if (!unified && !custom) {
@@ -195,7 +196,11 @@ const NimbleEmoji = (props) => {
 NimbleEmoji.propTypes /* remove-proptypes */ = {
   ...EmojiPropTypes,
   data: PropTypes.object.isRequired,
+  emojiClassName: PropTypes.string,
 }
-NimbleEmoji.defaultProps = EmojiDefaultProps
+NimbleEmoji.defaultProps = {
+  ...EmojiDefaultProps,
+  emojiClassName: '',
+}
 
 export default NimbleEmoji

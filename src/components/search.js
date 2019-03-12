@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import classNames from 'classnames'
 
 import { search as icons } from '../svgs'
 import NimbleEmojiIndex from '../utils/emoji-index/nimble-emoji-index'
@@ -64,11 +65,11 @@ export default class Search extends React.PureComponent {
   }
 
   render() {
-    var { i18n, autoFocus } = this.props
+    var { i18n, autoFocus, className } = this.props
     var { icon, isSearching } = this.state
 
     return (
-      <div className="emoji-mart-search">
+      <div className={classNames('emoji-mart-search', className)}>
         <input
           ref={this.setRef}
           type="text"
@@ -94,6 +95,7 @@ Search.propTypes /* remove-proptypes */ = {
   maxResults: PropTypes.number,
   emojisToShowFilter: PropTypes.func,
   autoFocus: PropTypes.bool,
+  className: PropTypes.string,
 }
 
 Search.defaultProps = {
@@ -101,4 +103,5 @@ Search.defaultProps = {
   maxResults: 75,
   emojisToShowFilter: null,
   autoFocus: false,
+  className: '',
 }

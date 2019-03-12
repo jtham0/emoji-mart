@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import classNames from 'classnames'
 
 import Skins from './skins'
 
@@ -11,7 +12,12 @@ export default class SkinsDot extends Skins {
   }
 
   render() {
-    const { skin, i18n } = this.props
+    const {
+      skin,
+      i18n,
+      skinToneClassName,
+      skinToneContainerClassName,
+    } = this.props
     const { opened } = this.state
     const skinToneNodes = []
 
@@ -20,7 +26,10 @@ export default class SkinsDot extends Skins {
       skinToneNodes.push(
         <span
           key={`skin-tone-${skinTone}`}
-          className={`emoji-mart-skin-swatch${selected ? ' selected' : ''}`}
+          className={classNames(
+            `emoji-mart-skin-swatch${selected ? ' selected' : ''}`,
+            skinToneClassName,
+          )}
         >
           <span
             onClick={this.handleClick}
@@ -32,7 +41,12 @@ export default class SkinsDot extends Skins {
     }
 
     return (
-      <div className={`emoji-mart-skin-swatches${opened ? ' opened' : ''}`}>
+      <div
+        className={classNames(
+          `emoji-mart-skin-swatches${opened ? ' opened' : ''}`,
+          skinToneContainerClassName,
+        )}
+      >
         {skinToneNodes}
       </div>
     )
@@ -43,8 +57,12 @@ SkinsDot.propTypes /* remove-proptypes */ = {
   onChange: PropTypes.func,
   skin: PropTypes.number.isRequired,
   i18n: PropTypes.object,
+  skinToneClassName: PropTypes.string,
+  skinToneContainerClassName: PropTypes.string,
 }
 
 SkinsDot.defaultProps = {
   onChange: () => {},
+  skinToneClassName: '',
+  skinToneContainerClassName: '',
 }
