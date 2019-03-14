@@ -347,7 +347,7 @@ export default class NimblePicker extends React.PureComponent {
     }
 
     this.forceUpdate()
-    this.scroll.scrollTop = 0
+    this.scroll.scrollTop(0)
     this.handleScroll()
   }
 
@@ -399,6 +399,7 @@ export default class NimblePicker extends React.PureComponent {
 
         if (
           this.SEARCH_CATEGORY.emojis &&
+          this.SEARCH_CATEGORY.emojis.length > 0 &&
           (emoji = getSanitizedData(
             this.SEARCH_CATEGORY.emojis[0],
             this.state.skin,
@@ -497,6 +498,7 @@ export default class NimblePicker extends React.PureComponent {
         categoryClassName,
         categoryLabelClassName,
         emojiClassName,
+        notFoundClassName,
         notFoundLabelClassName,
         previewClassName,
         previewTitleClassName,
@@ -607,6 +609,7 @@ export default class NimblePicker extends React.PureComponent {
                 className={categoryClassName}
                 categoryLabelClassName={categoryLabelClassName}
                 emojiClassName={emojiClassName}
+                notFoundClassName={notFoundClassName}
                 notFoundLabelClassName={notFoundLabelClassName}
               />
             )

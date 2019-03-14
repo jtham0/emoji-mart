@@ -12,11 +12,12 @@ export default class NotFound extends React.PureComponent {
       i18n,
       notFound,
       notFoundEmoji,
+      className,
       labelClassName,
     } = this.props
 
     const component = (notFound && notFound()) || (
-      <div className="emoji-mart-no-results">
+      <div className={classNames('emoji-mart-no-results', className)}>
         {NimbleEmoji({
           data: data,
           ...emojiProps,
@@ -40,11 +41,12 @@ export default class NotFound extends React.PureComponent {
 
 NotFound.propTypes /* remove-proptypes */ = {
   notFound: PropTypes.func.isRequired,
-  notFoundString: PropTypes.string.isRequired,
   emojiProps: PropTypes.object.isRequired,
+  className: PropTypes.string,
   labelClassName: PropTypes.string,
 }
 
 NotFound.defaultProps = {
+  className: '',
   labelClassName: '',
 }

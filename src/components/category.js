@@ -157,6 +157,7 @@ export default class Category extends React.Component {
         className,
         categoryLabelClassName,
         emojiClassName,
+        notFoundClassName,
         notFoundLabelClassName,
       } = this.props,
       emojis = this.getEmojis(),
@@ -217,6 +218,7 @@ export default class Category extends React.Component {
               notFoundEmoji={notFoundEmoji}
               data={this.data}
               emojiProps={emojiProps}
+              className={notFoundClassName}
               labelClassName={notFoundLabelClassName}
             />
           )}
@@ -238,6 +240,7 @@ Category.propTypes /* remove-proptypes */ = {
   className: PropTypes.string,
   categoryLabelClassName: PropTypes.string,
   emojiClassName: PropTypes.string,
+  notFoundClassName: PropTypes.string,
   notFoundLabelClassName: PropTypes.string,
 }
 
@@ -247,5 +250,6 @@ Category.defaultProps = {
   className: '',
   categoryLabelClassName: '',
   emojiClassName: '',
+  notFoundClassName: '',
   notFoundLabelClassName: '',
 }
