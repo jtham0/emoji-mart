@@ -497,6 +497,7 @@ export default class NimblePicker extends React.PureComponent {
         categoryClassName,
         categoryLabelClassName,
         emojiClassName,
+        notFoundClassName,
         notFoundLabelClassName,
         previewClassName,
         previewTitleClassName,
@@ -607,6 +608,7 @@ export default class NimblePicker extends React.PureComponent {
                 className={categoryClassName}
                 categoryLabelClassName={categoryLabelClassName}
                 emojiClassName={emojiClassName}
+                notFoundClassName={notFoundClassName}
                 notFoundLabelClassName={notFoundLabelClassName}
               />
             )
